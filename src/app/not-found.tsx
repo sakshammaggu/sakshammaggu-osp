@@ -44,16 +44,12 @@ export default function NotFound() {
 
         {/* Quick Return Actions */}
         <div className="flex flex-wrap items-center justify-center gap-3 pt-4">
-          <Link href="/" className="no-underline">
-            <Button variant="primary" size="sm" className="gap-2 font-mono">
-              <Home className="w-3.5 h-3.5" /> Return to Base
-            </Button>
-          </Link>
-          <Link href="/projects" className="no-underline">
-            <Button variant="secondary" size="sm" className="gap-2 font-mono">
-              <Briefcase className="w-3.5 h-3.5" /> Projects Index
-            </Button>
-          </Link>
+          <Button href="/" variant="primary" size="sm" className="gap-2 font-mono">
+            <Home className="w-3.5 h-3.5" /> Return to Base
+          </Button>
+          <Button href="/projects" variant="secondary" size="sm" className="gap-2 font-mono">
+            <Briefcase className="w-3.5 h-3.5" /> Projects Index
+          </Button>
         </div>
       </div>
     </div>

@@ -77,6 +77,8 @@ export function SectionRuler() {
           return (
             <React.Fragment key={section.id}>
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => scrollTo(section.id)}
                 className="group relative flex items-center gap-2 py-0.5 text-left cursor-pointer outline-none"
                 title={`${section.num} · ${section.label}`}

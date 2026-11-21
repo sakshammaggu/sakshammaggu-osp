@@ -159,6 +159,8 @@ export function AchievementsSection() {
             ].map((f) => (
               <button
                 key={f.id}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setActiveFilter(f.id)}
                 className={`px-3 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                   activeFilter === f.id

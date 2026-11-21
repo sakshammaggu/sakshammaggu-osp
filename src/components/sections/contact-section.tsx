@@ -269,6 +269,7 @@ export function ContactSection() {
                       <button
                         key={t.id}
                         type="button"
+                        suppressHydrationWarning
                         onClick={() => handleTopicChange(t)}
                         className={`px-3 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer ${
                           selectedTopic.id === t.id
@@ -290,6 +291,7 @@ export function ContactSection() {
                     </label>
                     <input
                       type="text"
+                      suppressHydrationWarning
                       placeholder="e.g. Alex Chen"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -303,6 +305,7 @@ export function ContactSection() {
                     </label>
                     <input
                       type="email"
+                      suppressHydrationWarning
                       placeholder="alex@company.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -319,6 +322,7 @@ export function ContactSection() {
                   <textarea
                     required
                     rows={4}
+                    suppressHydrationWarning
                     placeholder="Tell me about your systems, team, or inquiry..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}

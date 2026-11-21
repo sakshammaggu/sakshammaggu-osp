@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { SectionHeader } from "@/components/ui/section-header";
 import { Card } from "@/components/ui/card";
 import { Chip } from "@/components/ui/chip";
@@ -21,26 +22,43 @@ export function AboutSection() {
 
         {/* 5 / 7 Split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          {/* Left: 5 Cols (Polaroid-style Card with 2 deg subtle rotation) */}
+          {/* Left: 5 Cols (Polaroid-style Badge Card with 2 deg subtle rotation) */}
           <div className="lg:col-span-5 flex justify-center">
-            <div className="relative w-full max-w-[320px] aspect-[3/4] rounded-[var(--radius-lg)] p-4 bg-[var(--surface-1)] shadow-xl border border-transparent rotate-1 hover:rotate-0 transition-transform duration-300">
-              <div className="w-full h-full rounded-[var(--radius-md)] border border-[var(--line-subtle)] bg-[var(--surface-2)] flex flex-col items-center justify-between p-6 text-center overflow-hidden relative shadow-sm">
+            <div className="relative w-full max-w-[320px] rounded-[var(--radius-lg)] p-4 bg-[var(--surface-1)] shadow-xl border border-[var(--line-strong)] rotate-1 hover:rotate-0 transition-transform duration-300">
+              <div className="w-full rounded-[var(--radius-md)] border border-[var(--line-subtle)] bg-[var(--surface-2)] flex flex-col items-center p-4 text-center overflow-hidden relative shadow-sm">
                 <div className="dot-grid absolute inset-0 opacity-15" />
 
-                <div className="pt-8">
-                  <div className="w-20 h-20 rounded-full mx-auto mb-4 border border-[var(--accent-line)] bg-[var(--accent-subtle)] flex items-center justify-center font-serif italic text-3xl text-[var(--accent)] select-none">
-                    SM
+                {/* Photo container with proper aspect ratio */}
+                <div className="relative w-full aspect-[4/3] rounded-[var(--radius-sm)] overflow-hidden border border-[var(--line-subtle)] mb-4 bg-[var(--surface-1)] shadow-xs">
+                  <Image
+                    src="/saksham-maggu-badge-photo.jpg"
+                    alt="Saksham Maggu - Software Engineer"
+                    fill
+                    className="object-cover object-top"
+                    sizes="300px"
+                  />
+                </div>
+
+                {/* Identity Info */}
+                <div className="w-full text-left space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-base font-semibold text-[var(--text-1)]">
+                      {siteConfig.name}
+                    </h4>
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
                   </div>
-                  <h4 className="text-base font-semibold text-[var(--text-1)]">
-                    {siteConfig.name}
-                  </h4>
-                  <p className="font-mono text-xs text-[var(--text-3)]">
-                    Software Engineer @ Dell
+                  <p className="font-mono text-xs text-[var(--accent)] font-medium">
+                    Software Engineer 1 · AI Solutions
+                  </p>
+                  <p className="font-mono text-[0.7rem] text-[var(--text-3)]">
+                    Dell Technologies · Bengaluru
                   </p>
                 </div>
 
-                <div className="w-full pt-4 border-t border-[var(--line-subtle)] font-mono text-[0.65rem] text-[var(--text-4)]">
-                  // TODO(photo): Candid portrait placeholder
+                {/* Footer Details */}
+                <div className="w-full pt-3 mt-3 border-t border-[var(--line-subtle)] flex items-center justify-between font-mono text-[0.68rem] text-[var(--text-3)]">
+                  <span>SPEC: DISTRIBUTED HA</span>
+                  <span className="text-[var(--copper)]">UPES &apos;26</span>
                 </div>
               </div>
             </div>

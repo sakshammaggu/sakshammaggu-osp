@@ -233,6 +233,8 @@ export function Diagram({
 
           {/* Stepper control */}
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={handleNextStep}
             className={`flex items-center gap-1.5 px-3 py-1 rounded text-xs transition-colors cursor-pointer ${
               currentStepIdx !== null
@@ -251,6 +253,8 @@ export function Diagram({
           {/* Zoom Controls */}
           <div className="flex items-center border border-[var(--line-strong)] rounded overflow-hidden">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setZoom((z) => Math.max(0.75, z - 0.1))}
               className="p-1.5 hover:bg-[var(--surface-2)] hover:text-[var(--text-1)] transition-colors cursor-pointer"
               title="Zoom out"
@@ -261,6 +265,8 @@ export function Diagram({
               {Math.round(zoom * 100)}%
             </span>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setZoom((z) => Math.min(1.4, z + 0.1))}
               className="p-1.5 hover:bg-[var(--surface-2)] hover:text-[var(--text-1)] transition-colors cursor-pointer"
               title="Zoom in"
@@ -270,6 +276,8 @@ export function Diagram({
           </div>
 
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => {
               setZoom(1);
               setCurrentStepIdx(null);
@@ -450,6 +458,8 @@ export function Diagram({
         {currentStepIdx !== null && (
           <div className="flex items-center gap-2 shrink-0">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={handlePrevStep}
               disabled={currentStepIdx === 0}
               className="px-2 py-1 rounded border border-[var(--line-strong)] text-[var(--text-1)] disabled:opacity-30 cursor-pointer hover:bg-[var(--surface-3)] transition-colors"
@@ -457,6 +467,8 @@ export function Diagram({
               <ChevronLeft className="w-3.5 h-3.5 inline mr-0.5" /> Prev
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={handleNextStep}
               className="px-2 py-1 rounded border border-[var(--accent-line)] bg-[var(--accent-subtle)] text-[var(--accent)] font-medium hover:bg-[var(--accent)] hover:text-[var(--on-accent)] transition-colors cursor-pointer"
             >

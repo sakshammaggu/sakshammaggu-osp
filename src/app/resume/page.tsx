@@ -1,10 +1,13 @@
 "use client";
 
+import Image from "next/image";
 import { FileDown, Printer, Mail, Phone, MapPin, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Chip } from "@/components/ui/chip";
 import siteConfig from "@/content/site";
 import { getAllExperience, getAllSkills, getEducation } from "@/lib/content";
+
+const GOOGLE_DRIVE_RESUME_URL =
+  "https://drive.google.com/file/d/1Wnb_b-d0aWpwBzE_D03AwlAWkqLMhgtw/view?usp=sharing";
 
 export default function ResumePage() {
   const experiences = getAllExperience();
@@ -19,65 +22,118 @@ export default function ResumePage() {
     <div className="section-padding pt-32 bg-[var(--bg-0)] min-h-screen">
       <div className="container-main max-w-4xl">
         {/* Sticky Action Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8 pb-6 border-b border-[var(--line-subtle)] font-mono text-xs">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-6 border-b border-[var(--line-subtle)] font-mono text-xs">
           <div>
             <span className="text-[var(--text-3)] block mb-1">CURRICULUM VITAE</span>
             <span className="text-[var(--copper)] font-medium">Last updated: November 2026</span>
           </div>
 
-          <div className="flex items-center gap-3">
-            <Button variant="secondary" size="sm" onClick={handlePrint} className="gap-1.5 font-mono">
-              <Printer className="w-3.5 h-3.5" /> Print / PDF
-            </Button>
-            <a
-              href="/Resume_Saksham-Maggu.pdf"
-              download="Saksham_Maggu_Resume.pdf"
-              className="no-underline"
+          <div className="flex flex-wrap items-center gap-2.5">
+            {/* Quick in-browser Print */}
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={handlePrint}
+              className="hidden md:inline-flex items-center gap-1.5 font-mono text-xs border border-[var(--line-subtle)] hover:bg-[var(--surface-3)]"
             >
-              <Button variant="primary" size="sm" className="gap-1.5 font-mono">
-                <FileDown className="w-3.5 h-3.5" /> Download PDF
+              <Printer className="w-3.5 h-3.5" /> Browser Print
+            </Button>
+
+            {/* Print on Google Drive */}
+            <a
+              href={GOOGLE_DRIVE_RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline"
+              title="Open Google Drive document to print"
+            >
+              <Button variant="secondary" size="sm" className="gap-1.5 font-mono text-xs text-[var(--accent)] border-[var(--accent-line)]/50 hover:bg-[var(--surface-3)]">
+                <Printer className="w-3.5 h-3.5" /> Print (Drive) ↗
+              </Button>
+            </a>
+
+            {/* Download PDF via Google Drive Shareable Link */}
+            <a
+              href={GOOGLE_DRIVE_RESUME_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="no-underline"
+              title="View and download original PDF on Google Drive"
+            >
+              <Button variant="primary" size="sm" className="gap-1.5 font-mono text-xs font-semibold">
+                <FileDown className="w-3.5 h-3.5" /> Download PDF ↗
               </Button>
             </a>
           </div>
         </div>
 
+        {/* Drive Document Pill Banner */}
+        <div className="mb-6 p-3 rounded-[var(--radius-md)] border border-[var(--accent-line)]/40 bg-[var(--surface-1)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 font-mono text-xs">
+          <div className="flex items-center gap-2 text-[var(--text-2)]">
+            <span className="w-2 h-2 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--accent)]" />
+            <span>Official Canonical Document hosted on Google Drive</span>
+          </div>
+          <a
+            href={GOOGLE_DRIVE_RESUME_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--accent)] hover:underline flex items-center gap-1 font-semibold"
+          >
+            Open in Google Drive <ExternalLink className="w-3 h-3" />
+          </a>
+        </div>
+
         {/* Printable Resume Sheet Card */}
         <div className="rounded-[var(--radius-lg)] border border-[var(--line-strong)] bg-[var(--surface-1)] p-8 md:p-12 shadow-xl print:border-none print:shadow-none print:p-0">
-          {/* Header */}
-          <div className="border-b border-[var(--line-subtle)] pb-8 mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-1)] mb-2">
-              Saksham Maggu
-            </h1>
-            <p className="font-mono text-xs text-[var(--accent)] font-medium uppercase tracking-wider mb-4">
-              Software Engineer 1 · AI Solutions & Distributed Infrastructure
-            </p>
+          {/* Header with Badge Photo */}
+          <div className="border-b border-[var(--line-subtle)] pb-8 mb-8 flex flex-col-reverse sm:flex-row sm:items-start justify-between gap-6">
+            <div>
+              <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-1)] mb-2">
+                Saksham Maggu
+              </h1>
+              <p className="font-mono text-xs text-[var(--accent)] font-medium uppercase tracking-wider mb-4">
+                Software Engineer 1 · AI Solutions & Distributed Infrastructure
+              </p>
 
-            <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[var(--text-2)]">
-              <span className="flex items-center gap-1.5">
-                <MapPin className="w-3.5 h-3.5 text-[var(--text-3)]" /> Bengaluru, India
-              </span>
-              <span>·</span>
-              <span className="flex items-center gap-1.5">
-                <Mail className="w-3.5 h-3.5 text-[var(--text-3)]" /> {siteConfig.email}
-              </span>
-              <span>·</span>
-              <span className="flex items-center gap-1.5">
-                <Phone className="w-3.5 h-3.5 text-[var(--text-3)]" /> +91-7015369344
-              </span>
+              <div className="flex flex-wrap items-center gap-4 text-xs font-mono text-[var(--text-2)]">
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="w-3.5 h-3.5 text-[var(--text-3)]" /> Bengaluru, India
+                </span>
+                <span>·</span>
+                <span className="flex items-center gap-1.5">
+                  <Mail className="w-3.5 h-3.5 text-[var(--text-3)]" /> {siteConfig.email}
+                </span>
+                <span>·</span>
+                <span className="flex items-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-[var(--text-3)]" /> +91-7015369344
+                </span>
+              </div>
+
+              <div className="flex items-center gap-4 mt-3 text-xs font-mono text-[var(--copper)]">
+                <a href="https://github.com/sakshammaggu" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  GitHub ↗
+                </a>
+                <span>·</span>
+                <a href="https://linkedin.com/in/sakshammaggu" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  LinkedIn ↗
+                </a>
+                <span>·</span>
+                <a href="https://leetcode.com/sakshammaggu" target="_blank" rel="noopener noreferrer" className="hover:underline">
+                  LeetCode ↗
+                </a>
+              </div>
             </div>
 
-            <div className="flex items-center gap-4 mt-3 text-xs font-mono text-[var(--copper)]">
-              <a href="https://github.com/sakshammaggu" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                GitHub ↗
-              </a>
-              <span>·</span>
-              <a href="https://linkedin.com/in/sakshammaggu" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                LinkedIn ↗
-              </a>
-              <span>·</span>
-              <a href="https://leetcode.com/sakshammaggu" target="_blank" rel="noopener noreferrer" className="hover:underline">
-                LeetCode ↗
-              </a>
+            {/* Official Badge Photo */}
+            <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-[var(--radius-md)] overflow-hidden border-2 border-[var(--accent-line)] shadow-md shrink-0 bg-[var(--surface-2)]">
+              <Image
+                src="/saksham-maggu-badge-photo.jpg"
+                alt="Saksham Maggu"
+                fill
+                className="object-cover object-top"
+                sizes="120px"
+                priority
+              />
             </div>
           </div>
 
@@ -98,7 +154,7 @@ export default function ResumePage() {
                 </div>
                 <div className="font-mono text-xs text-left sm:text-right text-[var(--text-3)]">
                   <div>{edu.start} – {edu.end}</div>
-                  <div className="text-[var(--copper)] font-medium">{edu.notes}</div>
+                  {edu.notes && <div className="text-[var(--accent)]">{edu.notes}</div>}
                 </div>
               </div>
             ))}
@@ -106,37 +162,46 @@ export default function ResumePage() {
 
           {/* Experience */}
           <section className="mb-8">
-            <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--text-3)] font-semibold mb-4 pb-1 border-b border-[var(--line-subtle)]">
-              WORK EXPERIENCE
+            <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--text-3)] font-semibold mb-6 pb-1 border-b border-[var(--line-subtle)]">
+              EXPERIENCE
             </h2>
             <div className="space-y-6">
               {experiences.map((exp) => (
                 <div key={exp.slug} className="space-y-2">
-                  <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1">
                     <div>
-                      <h3 className="font-semibold text-sm md:text-base text-[var(--text-1)]">
-                        {exp.company} — <span className="font-medium text-[var(--accent)]">{exp.role}</span>
+                      <h3 className="font-semibold text-base text-[var(--text-1)]">
+                        {exp.company}
                       </h3>
+                      <p className="text-xs text-[var(--copper)] font-medium">
+                        {exp.role}
+                      </p>
                     </div>
-                    <span className="font-mono text-xs text-[var(--text-3)]">
-                      {exp.start} – {exp.end === "present" ? "Present" : exp.end} | {exp.location}
-                    </span>
+                    <div className="font-mono text-xs text-left sm:text-right text-[var(--text-3)]">
+                      <div>{exp.start} – {exp.end ?? "present"}</div>
+                      <div>{exp.location}</div>
+                    </div>
                   </div>
 
-                  <p className="text-xs text-[var(--text-2)] italic">
+                  <p className="text-xs text-[var(--text-2)] leading-relaxed">
                     {exp.summary}
                   </p>
 
-                  <ul className="space-y-1 pl-4 text-xs text-[var(--text-2)] leading-relaxed list-disc">
-                    {exp.impact.map((point, pi) => (
-                      <li key={pi}>{point}</li>
+                  <ul className="list-disc list-inside space-y-1 text-xs text-[var(--text-2)] leading-relaxed pl-1">
+                    {exp.impact.map((point, idx) => (
+                      <li key={idx} className="marker:text-[var(--accent)]">
+                        {point}
+                      </li>
                     ))}
                   </ul>
 
-                  <div className="pt-1 flex flex-wrap gap-1">
-                    {exp.skills.map((s) => (
-                      <span key={s} className="font-mono text-[0.65rem] text-[var(--text-3)] bg-[var(--surface-3)] px-2 py-0.5 rounded">
-                        {s}
+                  <div className="flex flex-wrap gap-1 pt-1">
+                    {exp.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="font-mono text-[0.65rem] px-1.5 py-0.5 rounded bg-[var(--surface-2)] text-[var(--text-3)] border border-[var(--line-subtle)]"
+                      >
+                        {skill}
                       </span>
                     ))}
                   </div>
@@ -145,64 +210,42 @@ export default function ResumePage() {
             </div>
           </section>
 
-          {/* Technical Skills */}
-          <section className="mb-8">
-            <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--text-3)] font-semibold mb-4 pb-1 border-b border-[var(--line-subtle)]">
-              TECHNICAL PROFICIENCIES
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs font-mono">
-              <div>
-                <span className="text-[var(--text-3)] block mb-1">LANGUAGES</span>
-                <span className="text-[var(--text-1)]">C/C++, TypeScript, Python, Golang</span>
-              </div>
-              <div>
-                <span className="text-[var(--text-3)] block mb-1">FRAMEWORKS & ENGINES</span>
-                <span className="text-[var(--text-1)]">NextJS, ReactJS, NodeJS, ExpressJS, FastAPI, Langchain</span>
-              </div>
-              <div>
-                <span className="text-[var(--text-3)] block mb-1">DATA & INFRASTRUCTURE</span>
-                <span className="text-[var(--text-1)]">Docker, Kubernetes, MongoDB, MySQL, ChromaDB (Vector)</span>
-              </div>
-              <div>
-                <span className="text-[var(--text-3)] block mb-1">SYSTEMS & PROTOCOLS</span>
-                <span className="text-[var(--text-1)]">Redfish API, gRPC, iptables, RESTful APIs, SDD, SDLC</span>
-              </div>
-            </div>
-          </section>
-
-          {/* Projects */}
+          {/* Skills Summary */}
           <section>
             <h2 className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--text-3)] font-semibold mb-4 pb-1 border-b border-[var(--line-subtle)]">
-              SELECTED PROJECTS
+              TECHNICAL SKILLS MATRIX
             </h2>
-            <div className="space-y-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs">
               <div>
-                <div className="flex items-center justify-between text-xs font-mono mb-1">
-                  <h3 className="font-semibold text-sm text-[var(--text-1)]">Interview AI</h3>
-                  <span className="text-[var(--text-3)]">ReactJS, NodeJS, ExpressJS, MongoDB, OpenAI</span>
-                </div>
-                <p className="text-xs text-[var(--text-2)] leading-relaxed">
-                  Dynamic technical interview question generator and automated AI feedback evaluator with JWT authentication.
+                <span className="font-mono text-[0.7rem] text-[var(--accent)] font-semibold block mb-1">
+                  LANGUAGES
+                </span>
+                <p className="text-[var(--text-2)] font-mono">
+                  {skills.filter(s => s.category === "language").map(s => s.name).join(" · ")}
                 </p>
               </div>
-
               <div>
-                <div className="flex items-center justify-between text-xs font-mono mb-1">
-                  <h3 className="font-semibold text-sm text-[var(--text-1)]">CorrViz</h3>
-                  <span className="text-[var(--text-3)]">NextJS, Python, FastAPI, Langchain, Gemini, ChromaDB</span>
-                </div>
-                <p className="text-xs text-[var(--text-2)] leading-relaxed">
-                  Interactive dataset correlation visualizer with RAG AI chatbot, pair plots, and 10+ registered active users.
+                <span className="font-mono text-[0.7rem] text-[var(--accent)] font-semibold block mb-1">
+                  SYSTEMS & ARCHITECTURE
+                </span>
+                <p className="text-[var(--text-2)] font-mono">
+                  {skills.filter(s => s.category === "systems").map(s => s.name).join(" · ")}
                 </p>
               </div>
-
               <div>
-                <div className="flex items-center justify-between text-xs font-mono mb-1">
-                  <h3 className="font-semibold text-sm text-[var(--text-1)]">CpuVis</h3>
-                  <span className="text-[var(--text-3)]">C++, SDL2, CMake</span>
-                </div>
-                <p className="text-xs text-[var(--text-2)] leading-relaxed">
-                  Process scheduling algorithm visualizer built with modular GUI architecture in C++ and CMake.
+                <span className="font-mono text-[0.7rem] text-[var(--accent)] font-semibold block mb-1">
+                  DATA & AI
+                </span>
+                <p className="text-[var(--text-2)] font-mono">
+                  {skills.filter(s => s.category === "data").map(s => s.name).join(" · ")}
+                </p>
+              </div>
+              <div>
+                <span className="font-mono text-[0.7rem] text-[var(--accent)] font-semibold block mb-1">
+                  WEB & CLOUD TOOLS
+                </span>
+                <p className="text-[var(--text-2)] font-mono">
+                  {skills.filter(s => s.category === "web" || s.category === "tool").map(s => s.name).join(" · ")}
                 </p>
               </div>
             </div>

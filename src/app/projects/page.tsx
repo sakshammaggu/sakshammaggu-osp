@@ -97,6 +97,8 @@ function ProjectsContent() {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8 pb-4 border-b border-[var(--line-subtle)] font-mono text-xs">
           <div className="inline-flex p-1 rounded-full border border-[var(--line-subtle)] bg-[var(--surface-1)]">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => handleTabChange("all")}
               className={`px-4 py-1.5 rounded-full transition-all cursor-pointer ${
                 activeTab === "all"
@@ -107,6 +109,8 @@ function ProjectsContent() {
               All Work ({projects.length})
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => handleTabChange("personal")}
               className={`px-4 py-1.5 rounded-full transition-all cursor-pointer ${
                 activeTab === "personal"
@@ -117,6 +121,8 @@ function ProjectsContent() {
               Personal Projects ({projects.length})
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => handleTabChange("open-source")}
               className={`px-4 py-1.5 rounded-full transition-all cursor-pointer ${
                 activeTab === "open-source"
@@ -131,6 +137,8 @@ function ProjectsContent() {
           <div className="flex items-center gap-2 text-[var(--text-3)]">
             <span>Sort:</span>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setSortBy(sortBy === "featured" ? "newest" : "featured")}
               className="text-[var(--accent)] hover:underline cursor-pointer"
             >
@@ -148,6 +156,7 @@ function ProjectsContent() {
                 <Search className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-[var(--text-3)]" />
                 <input
                   type="text"
+                  suppressHydrationWarning
                   placeholder="Search by title, domain, or technology..."
                   value={searchQuery}
                   onChange={(e) => handleSearchChange(e.target.value)}
@@ -160,6 +169,8 @@ function ProjectsContent() {
                 {["all", "web", "systems", "research"].map((type) => (
                   <button
                     key={type}
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => handleTypeChange(type)}
                     className={`px-3 py-1.5 rounded-full text-xs font-mono uppercase tracking-wider transition-colors cursor-pointer ${
                       selectedType === type
@@ -182,6 +193,8 @@ function ProjectsContent() {
               </span>
               {(selectedType !== "all" || searchQuery) && (
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => {
                     setSelectedType("all");
                     setSearchQuery("");
@@ -287,6 +300,8 @@ function ProjectsContent() {
                   No matching projects found for query &ldquo;{searchQuery}&rdquo;.
                 </p>
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => {
                     setSearchQuery("");
                     setSelectedType("all");
@@ -321,6 +336,8 @@ function ProjectsContent() {
             <div className="flex items-center gap-2">
               {/* Prev Button */}
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
                 className="px-3 py-1.5 rounded border border-[var(--line)] bg-[var(--surface-1)] text-[var(--text-1)] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[var(--surface-3)] transition-colors cursor-pointer flex items-center gap-1"
@@ -335,6 +352,8 @@ function ProjectsContent() {
                 return (
                   <button
                     key={pageNum}
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => setCurrentPage(pageNum)}
                     className={`w-8 h-8 rounded font-mono text-xs transition-colors cursor-pointer flex items-center justify-center ${
                       isActive
@@ -349,6 +368,8 @@ function ProjectsContent() {
 
               {/* Next Button */}
               <button
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
                 disabled={currentPage === totalPages}
                 className="px-3 py-1.5 rounded border border-[var(--line)] bg-[var(--surface-1)] text-[var(--text-1)] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[var(--surface-3)] transition-colors cursor-pointer flex items-center gap-1"

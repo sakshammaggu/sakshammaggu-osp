@@ -1,4 +1,5 @@
 import { forwardRef } from "react";
+import Link from "next/link";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "link" | "icon";
 type ButtonSize = "default" | "sm" | "lg";
@@ -7,6 +8,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
 const baseStyles =
@@ -30,7 +33,7 @@ const sizeStyles: Record<ButtonSize, string> = {
 };
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className = "", variant = "primary", size = "default", style, ...props }, ref) => {
+  ({ className = "", variant = "primary", size = "default", style, href, target, rel, ...props }, ref) => {
     const btnStyle =
       variant === "primary"
         ? {
@@ -40,10 +43,50 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           }
         : style;
 
+    const classes = `${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`;
+
+    if (href) {
+      const isExternal = href.startsWith("http") || href.startsWith("mailto:");
+      if (isExternal) {
+        return (
+          <a
+            href={href}
+            target={target}
+            rel={rel}
+            className={`${classes} no-underline`}
+            style={{
+              transitionDuration: "var(--dur-base)",
+              transitionTimingFunction: "var(--ease-out)",
+              ...btnStyle,
+            }}
+          >
+            {props.children}
+          </a>
+        );
+      }
+      return (
+        <Link
+          href={href}
+          target={target}
+          rel={rel}
+          className={`${classes} no-underline`}
+          style={{
+            transitionDuration: "var(--dur-base)",
+            transitionTimingFunction: "var(--ease-out)",
+            ...btnStyle,
+          }}
+        >
+          {props.children}
+        </Link>
+      );
+    }
+
     return (
       <button
         ref={ref}
-        className={`${baseStyles} ${variantStyles[variant]} ${sizeStyles[size]} ${className}`}
+        type={props.type || "button"}
+        suppressHydrationWarning
+        className={classes}
         style={{
           transitionDuration: "var(--dur-base)",
           transitionTimingFunction: "var(--ease-out)",

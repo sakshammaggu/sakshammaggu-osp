@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowRight, FileDown, Mail } from "lucide-react";
 import siteConfig from "@/content/site";
 import { Button } from "@/components/ui/button";
@@ -90,13 +91,11 @@ export function HeroSection() {
                   View selected work <ArrowRight className="w-4 h-4" />
                 </span>
               </Button>
-              <Link href="/resume" className="no-underline">
-                <Button variant="secondary">
-                  <span className="flex items-center gap-2">
-                    Résumé <FileDown className="w-4 h-4" />
-                  </span>
-                </Button>
-              </Link>
+              <Button href="/resume" variant="secondary">
+                <span className="flex items-center gap-2">
+                  Résumé <FileDown className="w-4 h-4" />
+                </span>
+              </Button>
             </div>
 
             {/* Socials icon row */}
@@ -144,35 +143,36 @@ export function HeroSection() {
 
           {/* Right Column: 5 cols (Portrait Card) */}
           <div className="lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-[var(--radius-xl)] p-1 bg-[var(--surface-1)] shadow-xl transition-all hover:scale-[1.01] group">
+            <div className="relative w-full max-w-[340px] aspect-[4/5] rounded-[var(--radius-xl)] p-1 bg-gradient-to-br from-[var(--surface-3)] to-[var(--surface-1)] shadow-2xl transition-all duration-300 hover:scale-[1.01] group">
               {/* Bezel frame */}
               <div
-                className="w-full h-full rounded-[22px] overflow-hidden relative border border-[var(--line-strong)] flex flex-col items-center justify-center"
+                className="w-full h-full rounded-[22px] overflow-hidden relative border border-[var(--line-strong)] flex flex-col justify-end"
                 style={{
                   background: "var(--surface-2)",
                   boxShadow: "var(--shadow-md)",
                 }}
               >
-                {/* Subtle duotone pattern / monogram placeholder */}
-                <div className="absolute inset-0 dot-grid opacity-15" />
-                <div className="relative z-10 flex flex-col items-center justify-center text-center p-6">
-                  {/* Monogram Seal */}
-                  <div
-                    className="w-24 h-24 rounded-full flex items-center justify-center border border-[var(--accent-line)] bg-[var(--accent-subtle)] mb-4 text-3xl font-serif italic text-[var(--accent)] select-none"
-                    style={{ fontSize: "2.4rem" }}
-                  >
-                    SM
-                  </div>
-                  <span className="font-mono text-xs uppercase tracking-[0.1em] text-[var(--text-3)] mb-1">
-                    ENGINEERING INSTRUMENT
-                  </span>
-                  <span className="font-mono text-[0.7rem] text-[var(--text-4)]">
-                    // TODO(photo)
-                  </span>
+                {/* Official Badge Photo */}
+                <Image
+                  src="/saksham-maggu-badge-photo.jpg"
+                  alt="Saksham Maggu - Software Engineer"
+                  fill
+                  priority
+                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 340px"
+                />
+
+                {/* Subtle vignette/gradient overlay for bottom readability */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-0)] via-transparent to-transparent opacity-80 pointer-events-none" />
+
+                {/* Top Badge: System Engineer */}
+                <div className="absolute top-4 left-4 z-20 flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[var(--surface-1)]/85 backdrop-blur-md border border-[var(--accent-line)]/50 text-[var(--accent)] font-mono text-[10px] uppercase font-semibold shadow-sm">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] shadow-[0_0_6px_var(--accent)]" />
+                  <span>ENGINEER ID · DELL</span>
                 </div>
 
                 {/* Overlapping "currently" badge at bottom */}
-                <div className="absolute bottom-4 left-4 right-4 z-20">
+                <div className="relative z-20 p-4">
                   <div className="rounded-[var(--radius-md)] border border-[var(--line-subtle)] bg-[var(--surface-1)]/95 backdrop-blur-md px-3.5 py-2.5 shadow-md flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <span className="w-2 h-2 rounded-full bg-[var(--copper)] animate-pulse" />

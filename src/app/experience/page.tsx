@@ -27,6 +27,8 @@ export default function ExperiencePage() {
 
           <div className="inline-flex p-1 rounded-full border border-[var(--line-subtle)] bg-[var(--surface-1)] mb-12 self-start md:self-end">
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setViewMode("timeline")}
               className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer ${
                 viewMode === "timeline"
@@ -37,6 +39,8 @@ export default function ExperiencePage() {
               Timeline View
             </button>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setViewMode("matrix")}
               className={`px-4 py-1.5 rounded-full text-xs font-mono transition-all cursor-pointer ${
                 viewMode === "matrix"

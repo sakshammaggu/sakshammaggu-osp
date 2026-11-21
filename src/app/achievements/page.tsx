@@ -100,6 +100,8 @@ export default function AchievementsPage() {
             ].map((tab) => (
               <button
                 key={tab.id}
+                type="button"
+                suppressHydrationWarning
                 onClick={() => setFilter(tab.id)}
                 className={`px-3 py-1.5 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                   filter === tab.id

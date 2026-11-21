@@ -34,6 +34,8 @@ export function ExperienceSection() {
               {(["all", "full-time", "internship"] as const).map((tab) => (
                 <button
                   key={tab}
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setFilter(tab)}
                   className={`px-3.5 py-1.5 rounded-full text-xs font-mono capitalize transition-all cursor-pointer ${
                     filter === tab
@@ -139,6 +141,8 @@ export function ExperienceSection() {
                         </div>
 
                         <button
+                          type="button"
+                          suppressHydrationWarning
                           onClick={() => setSelectedExp(item)}
                           className="inline-flex items-center gap-1 font-mono text-xs text-[var(--accent)] hover:underline cursor-pointer"
                         >

@@ -156,6 +156,8 @@ export function Footer() {
               </p>
               <div className="pt-2 flex items-center gap-3">
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={scrollToTop}
                   className="inline-flex items-center gap-1.5 font-mono text-xs text-[var(--text-3)] hover:text-[var(--text-1)] transition-colors cursor-pointer"
                 >

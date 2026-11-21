@@ -146,6 +146,8 @@ export function Nav() {
         <div className="flex items-center gap-1.5 sm:gap-2 pl-1 sm:pl-2">
           {/* Cmd+K Palette Launcher */}
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={triggerCommandPalette}
             className="hidden md:inline-flex items-center gap-1.5 h-8 px-2.5 rounded-full text-[11px] font-mono transition-all cursor-pointer border border-[var(--accent-line)]/40 bg-[var(--surface-2)] text-[var(--accent)] hover:text-[var(--accent-hover)] hover:border-[var(--accent)] hover:bg-[var(--surface-3)] shadow-xs"
             title="Open Command Palette (⌘K)"
@@ -168,6 +170,8 @@ export function Nav() {
 
           {/* Mobile menu toggle */}
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setMobileOpen(!mobileOpen)}
             className="lg:hidden w-8 h-8 rounded-full inline-flex items-center justify-center transition-colors cursor-pointer text-[var(--accent)] hover:text-[var(--accent-hover)] hover:bg-[var(--surface-3)] border border-[var(--accent-line)]/40 bg-[var(--surface-2)]/80"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
@@ -191,6 +195,8 @@ export function Nav() {
               </span>
             </div>
             <button
+              type="button"
+              suppressHydrationWarning
               onClick={() => setMobileOpen(false)}
               className="w-8 h-8 rounded-full border border-[var(--accent-line)]/40 bg-[var(--surface-2)] flex items-center justify-center text-[var(--accent)]"
             >

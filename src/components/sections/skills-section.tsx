@@ -128,6 +128,8 @@ export function SkillsSection() {
                 return (
                   <button
                     key={cat.id}
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => setSelectedCategory(cat.id)}
                     className={`px-3 py-1 rounded-full text-xs font-mono transition-all cursor-pointer flex items-center gap-1.5 ${
                       selectedCategory === cat.id
@@ -225,6 +227,8 @@ export function SkillsSection() {
 
                 <div className="flex items-center gap-1.5 ml-auto sm:ml-0">
                   <button
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => handlePageChange(selectedCategory, currentPage - 1)}
                     disabled={currentPage <= 1}
                     className="px-2.5 py-1 rounded border border-[var(--line-subtle)] bg-[var(--surface-2)] text-[var(--text-2)] hover:text-[var(--text-1)] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[var(--surface-3)] transition-colors cursor-pointer flex items-center gap-1 font-mono text-xs"
@@ -241,6 +245,8 @@ export function SkillsSection() {
                       return (
                         <button
                           key={pageNum}
+                          type="button"
+                          suppressHydrationWarning
                           onClick={() => handlePageChange(selectedCategory, pageNum)}
                           className={`w-7 h-7 rounded font-mono text-xs transition-all cursor-pointer flex items-center justify-center ${
                             isActive
@@ -257,6 +263,8 @@ export function SkillsSection() {
                   </div>
 
                   <button
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => handlePageChange(selectedCategory, currentPage + 1)}
                     disabled={currentPage >= totalPages}
                     className="px-2.5 py-1 rounded border border-[var(--line-subtle)] bg-[var(--surface-2)] text-[var(--text-2)] hover:text-[var(--text-1)] disabled:opacity-30 disabled:cursor-not-allowed hover:bg-[var(--surface-3)] transition-colors cursor-pointer flex items-center gap-1 font-mono text-xs"

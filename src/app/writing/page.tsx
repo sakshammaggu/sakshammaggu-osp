@@ -119,6 +119,8 @@ export default function WritingLibraryPage() {
                   return (
                     <div key={s.slug} className="space-y-1">
                       <button
+                        type="button"
+                        suppressHydrationWarning
                         onClick={() => toggleSeries(s.slug)}
                         className="w-full flex items-center justify-between p-1.5 rounded hover:bg-[var(--surface-3)] text-left cursor-pointer transition-colors text-[var(--text-2)] hover:text-[var(--text-1)]"
                       >
@@ -180,6 +182,7 @@ export default function WritingLibraryPage() {
                 <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--text-3)]" />
                 <input
                   type="text"
+                  suppressHydrationWarning
                   placeholder="Filter articles by title or keyword..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -190,6 +193,8 @@ export default function WritingLibraryPage() {
               {/* Tag filters */}
               <div className="flex flex-wrap gap-1.5 pt-1">
                 <button
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setSelectedTag("all")}
                   className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                     selectedTag === "all"
@@ -202,6 +207,8 @@ export default function WritingLibraryPage() {
                 {allTags.map((tag) => (
                   <button
                     key={tag}
+                    type="button"
+                    suppressHydrationWarning
                     onClick={() => setSelectedTag(tag)}
                     className={`px-2.5 py-1 rounded-full text-xs font-mono transition-colors cursor-pointer ${
                       selectedTag === tag

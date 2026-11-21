@@ -15,6 +15,8 @@ export function ThemeToggle() {
   if (!mounted) {
     return (
       <button
+        type="button"
+        suppressHydrationWarning
         className="w-10 h-10 rounded-[10px] inline-flex items-center justify-center"
         style={{ color: "var(--text-2)" }}
         aria-label="Toggle theme"
@@ -48,6 +50,8 @@ export function ThemeToggle() {
 
   return (
     <button
+      type="button"
+      suppressHydrationWarning
       onClick={cycleTheme}
       className="w-10 h-10 rounded-[10px] inline-flex items-center justify-center transition-colors hover:bg-[var(--surface-3)] cursor-pointer"
       style={{

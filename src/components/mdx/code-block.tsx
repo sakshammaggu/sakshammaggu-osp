@@ -58,6 +58,8 @@ export function CodeBlock({
               {tabs.map((tab, idx) => (
                 <button
                   key={idx}
+                  type="button"
+                  suppressHydrationWarning
                   onClick={() => setActiveTab(idx)}
                   className={`px-2.5 py-1 rounded text-xs transition-colors cursor-pointer ${
                     activeTab === idx
@@ -84,6 +86,8 @@ export function CodeBlock({
           </span>
 
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setWrap(!wrap)}
             className={`p-1 rounded hover:text-[var(--text-1)] transition-colors cursor-pointer ${
               wrap ? "text-[var(--accent)]" : ""
@@ -94,6 +98,8 @@ export function CodeBlock({
           </button>
 
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={() => setShowLineNumbers(!showLineNumbers)}
             className={`p-1 rounded hover:text-[var(--text-1)] transition-colors cursor-pointer ${
               showLineNumbers ? "text-[var(--accent)]" : ""
@@ -104,6 +110,8 @@ export function CodeBlock({
           </button>
 
           <button
+            type="button"
+            suppressHydrationWarning
             onClick={handleCopy}
             className="flex items-center gap-1 rounded px-2 py-0.5 hover:text-[var(--text-1)] hover:bg-[var(--surface-2)] transition-colors cursor-pointer text-xs"
             title="Copy code snippet"
