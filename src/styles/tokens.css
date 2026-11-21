@@ -1,0 +1,187 @@
+/* ==========================================================================
+   PATINA INSTRUMENT — Design Tokens
+   Source of truth: PORTFOLIO_DESIGN_SPEC.md §3
+   ========================================================================== */
+
+/* ---------- Dark theme: "Patina Night" (default) ---------- */
+:root,
+:root[data-theme="dark"] {
+  /* canvas & surfaces (green-black ink, never pure black) */
+  --bg-0:        #090C0B;
+  --bg-1:        #0D1211;
+  --surface-1:   #121917;
+  --surface-2:   #18211E;
+  --surface-3:   #1E2A26;
+
+  /* lines */
+  --line-subtle:  #1F2B27;
+  --line:         #2A3833;
+  --line-strong:  #3A4B45;
+
+  /* text */
+  --text-1: #E8EEEA;
+  --text-2: #A5B3AD;
+  --text-3: #71827B;
+  --text-4: #4B5A54;
+
+  /* verdigris — primary accent */
+  --accent:        #5CC4AE;
+  --accent-hover:  #7AD6C2;
+  --accent-press:  #3FA892;
+  --accent-subtle: rgba(92,196,174,0.12);
+  --accent-line:   rgba(92,196,174,0.35);
+  --on-accent:     #06201B;
+
+  /* copper — rare highlight */
+  --copper:        #D9915F;
+  --copper-hover:  #E6A57A;
+  --copper-subtle: rgba(217,145,95,0.14);
+  --copper-line:   rgba(217,145,95,0.35);
+
+  /* semantic */
+  --success: #7BC47F;
+  --warning: #E5B454;
+  --danger:  #E5736A;
+  --info:    #7AA7D9;
+
+  /* focus */
+  --focus-ring: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--accent);
+
+  /* gradients */
+  --aura:
+    radial-gradient(60% 50% at 18% 0%,  rgba(92,196,174,0.14), transparent 70%),
+    radial-gradient(40% 40% at 92% 8%,  rgba(217,145,95,0.10), transparent 70%);
+
+  --bezel: linear-gradient(135deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03) 40%, rgba(92,196,174,0.18));
+
+  --text-grad: linear-gradient(100deg, #7AD6C2 0%, #5CC4AE 45%, #D9915F 100%);
+
+  --btn-grad: linear-gradient(180deg, #6FD0BA 0%, #4FB9A3 100%);
+  --btn-inset: inset 0 1px 0 rgba(255,255,255,.35);
+
+  --progress-grad: linear-gradient(90deg, var(--accent), var(--copper));
+
+  --divider: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+
+  /* elevation */
+  --shadow-sm: 0 1px 0 rgba(255,255,255,0.04) inset, 0 1px 2px rgba(0,0,0,0.40);
+  --shadow-md: 0 8px 24px -8px rgba(0,0,0,0.55);
+  --shadow-lg: 0 24px 60px -20px rgba(0,0,0,0.70);
+
+  /* code block bg */
+  --code-bg: #0E1413;
+}
+
+/* ---------- Light theme: "Patina Paper" ---------- */
+:root[data-theme="light"] {
+  --bg-0:        #F5F2EB;
+  --bg-1:        #EFEBE2;
+  --surface-1:   #FBF9F4;
+  --surface-2:   #FFFFFF;
+  --surface-3:   #F0ECE3;
+
+  --line-subtle:  #E5E0D4;
+  --line:         #D6D0C1;
+  --line-strong:  #B9B2A0;
+
+  --text-1: #15201C;
+  --text-2: #44534D;
+  --text-3: #5E6D66;
+  --text-4: #9AA59F;
+
+  --accent:        #0F7A68;
+  --accent-hover:  #0B6556;
+  --accent-press:  #084F43;
+  --accent-subtle: rgba(15,122,104,0.10);
+  --accent-line:   rgba(15,122,104,0.30);
+  --on-accent:     #F5FBF9;
+
+  --copper:        #B5602E;
+  --copper-hover:  #964C21;
+  --copper-subtle: rgba(181,96,46,0.12);
+  --copper-line:   rgba(181,96,46,0.32);
+
+  --success: #2F7D4A;
+  --warning: #9A6A00;
+  --danger:  #B3402F;
+  --info:    #2F5F9E;
+
+  --focus-ring: 0 0 0 2px var(--bg-0), 0 0 0 4px var(--accent);
+
+  --aura:
+    radial-gradient(60% 50% at 18% 0%,  rgba(15,122,104,0.10), transparent 70%),
+    radial-gradient(40% 40% at 92% 8%,  rgba(181,96,46,0.09),  transparent 70%);
+
+  --bezel: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(214,208,193,0.6) 45%, rgba(15,122,104,0.22));
+
+  --text-grad: linear-gradient(100deg, #0B6556 0%, #0F7A68 50%, #B5602E 100%);
+
+  --btn-grad: linear-gradient(180deg, #138A76 0%, #0F7A68 100%);
+  --btn-inset: inset 0 1px 0 rgba(255,255,255,.25);
+
+  --progress-grad: linear-gradient(90deg, var(--accent), var(--copper));
+
+  --divider: linear-gradient(90deg, transparent, var(--line) 20%, var(--line) 80%, transparent);
+
+  --shadow-sm: 0 1px 2px rgba(40,32,20,0.06);
+  --shadow-md: 0 8px 24px -10px rgba(40,32,20,0.14);
+  --shadow-lg: 0 28px 60px -24px rgba(40,32,20,0.22);
+
+  --code-bg: #FBF9F4;
+}
+
+/* ---------- Motion tokens ---------- */
+:root {
+  --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast:   120ms;
+  --dur-base:   200ms;
+  --dur-slow:   320ms;
+  --dur-reveal: 560ms;
+}
+
+/* ---------- Spacing (8pt grid) ---------- */
+:root {
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  24px;
+  --sp-6:  32px;
+  --sp-7:  48px;
+  --sp-8:  64px;
+  --sp-9:  96px;
+  --sp-10: 128px;
+  --sp-11: 160px;
+}
+
+/* ---------- Radius ---------- */
+:root {
+  --radius-xs:   6px;
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;
+  --radius-pill: 999px;
+}
+
+/* ---------- Z-index ---------- */
+:root {
+  --z-base:     0;
+  --z-sticky:   10;
+  --z-nav:      40;
+  --z-drawer:   50;
+  --z-palette:  60;
+  --z-toast:    70;
+  --z-lightbox: 80;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast:   0ms;
+    --dur-base:   0ms;
+    --dur-slow:   0ms;
+    --dur-reveal: 0ms;
+  }
+}
